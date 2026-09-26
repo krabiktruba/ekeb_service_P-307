@@ -76,3 +76,19 @@ class Testing4(unittest.TestCase):
         course.cancel_enrollment()
         course.enroll()
         self.assertEqual(course.enrolled, 1)
+
+class Testing5(unittest.TestCase):
+    # Stage 5!
+    def test_isfull(self):
+        course = Course("Колобок", 6)
+        course.enrolled = 6
+        self.assertTrue(course.is_full())
+
+    def test_isfull_partly(self):
+        course = Course("Колобок", 6)
+        course.enrolled = 3
+        self.assertEqual(course.is_full(), False)
+
+    def test_isfull_empty(self):
+        course = Course("Колобок", 6)
+        self.assertEqual(course.is_full(), False)

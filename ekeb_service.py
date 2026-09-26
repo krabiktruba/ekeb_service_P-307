@@ -21,3 +21,9 @@ class Course:
         self.enrolled -= 1
         if self.enrolled < 0:
             raise ValueError
+
+    def is_full(self):
+        if self.enrolled == self.capacity:
+            return True
+
+        return False
