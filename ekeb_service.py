@@ -1,4 +1,4 @@
-class Student:
+class Course:
     def __init__(self, name, capacity):
         if not name:
             raise ValueError("Имя студента не может быть пустым.")
@@ -7,3 +7,6 @@ class Student:
         self.name = name
         self.capacity = capacity
         self.enrolled = 0
+
+    def available_places(self):
+        return self.capacity - self.enrolled
