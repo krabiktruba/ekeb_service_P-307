@@ -56,3 +56,23 @@ class Testing3(unittest.TestCase):
         course.enrolled = 6
         with self.assertRaises(ValueError):
             course.enroll()
+
+class Testing4(unittest.TestCase):
+    # Stage 4!
+    def test_cancel_enrollment(self):
+        course = Course("Колобок", 6)
+        course.enrolled = 1
+        course.cancel_enrollment()
+        self.assertEqual(course.enrolled, 0)
+
+    def test_cancel_enrollment_overcancelling(self):
+        course = Course("Колобок", 6)
+        with self.assertRaises(ValueError):
+            course.cancel_enrollment()
+
+    def test_cancel_enrollment_regeneration(self):
+        course = Course("Колобок", 6)
+        course.enrolled = 1
+        course.cancel_enrollment()
+        course.enroll()
+        self.assertEqual(course.enrolled, 1)

@@ -16,3 +16,8 @@ class Course:
         if self.enrolled > self.capacity:
             raise ValueError("Места закончились.")
         return self.enrolled
+
+    def cancel_enrollment(self):
+        self.enrolled -= 1
+        if self.enrolled < 0:
+            raise ValueError
