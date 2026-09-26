@@ -10,3 +10,9 @@ class Course:
 
     def available_places(self):
         return self.capacity - self.enrolled
+
+    def enroll(self):
+        self.enrolled += 1
+        if self.enrolled > self.capacity:
+            raise ValueError("Места закончились.")
+        return self.enrolled

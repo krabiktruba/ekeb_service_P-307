@@ -30,3 +30,29 @@ class Testing2(unittest.TestCase):
         course.enrolled = 4
         self.assertEqual(course.available_places(), 2)
 
+
+class Testing3(unittest.TestCase):
+    # Stage 3!
+    def test_enroll(self):
+        course = Course("Колобок", 6)
+        self.assertEqual(course.enroll(), 1)
+
+    def test_enroll_serial_registration(self):
+        course = Course("Колобок", 6)
+        course.enroll()
+        course.enroll()
+        course.enroll()
+        course.enroll()
+        self.assertEqual(course.enrolled, 4)
+
+    def test_enroll_last_place(self):
+        course = Course("Колобок", 6)
+        course.enrolled = 5
+        course.enroll()
+        self.assertEqual(course.enrolled, 6)
+
+    def test_enroll_overcharge(self):
+        course = Course("Колобок", 6)
+        course.enrolled = 6
+        with self.assertRaises(ValueError):
+            course.enroll()
