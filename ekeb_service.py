@@ -27,3 +27,17 @@ class Course:
             return True
 
         return False
+
+class IntensiveCourse(Course):
+    def __init__(self, name, capacity, hours_per_week):
+        super().__init__(name, capacity)
+
+        if hours_per_week < 6 or hours_per_week > 20:
+            raise ValueError("Значения превышают диапазон 6-20.")
+
+        self.hours_per_week = hours_per_week
+
+    def workload_level(self):
+        if self.hours_per_week <= 10:
+            return "Средняя"
+        return "Высокая"
