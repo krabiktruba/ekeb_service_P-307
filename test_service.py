@@ -1,6 +1,6 @@
 # Практическая номер 2
 import unittest
-from service import print_cost, exam_result, Student, GrantStudent
+from service import print_cost, exam_result, Student, GrantStudent, ExcellentStudent
 
 
 class TestingA1(unittest.TestCase):
@@ -92,3 +92,26 @@ class TestingA4(unittest.TestCase):
         student = GrantStudent("Не Алия", 50)
         self.assertTrue(student.add_points(10), student.score == 60)
         print(student.grant_status())
+
+class Whatatest(unittest.TestCase):
+    def setUp(self):
+        self.student = ExcellentStudent("Типикалстароста", 74)
+
+    def test_scholarship_74(self):
+        self.assertEqual(self.student.scholarship(), 0)
+
+    def test_scholarship_75(self):
+        self.student.score = 75
+        self.assertEqual(self.student.scholarship(), 15000)
+
+    def test_scholarship_89(self):
+        self.student.score = 89
+        self.assertEqual(self.student.scholarship(), 15000)
+
+    def test_scholarship_90(self):
+        self.student.score = 90
+        self.assertEqual(self.student.scholarship(), 30000)
+
+    def test_scholarship_100(self):
+        self.student.score = 100
+        self.assertEqual(self.student.scholarship(), 30000)
